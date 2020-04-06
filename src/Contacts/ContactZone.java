@@ -67,7 +67,12 @@ public class ContactZone {
     }
 
     public void searchContact(){
-
+        String contactName = input.getString("Please enter the name you want to search for: ");
+        for (int i = 0; i < contactList.size(); i += 1) {
+            if(contactList.get(i).contains(contactName)){
+                System.out.println(contactList.get(i));
+            }
+        }
     }
 
     public void deleteContact(){
