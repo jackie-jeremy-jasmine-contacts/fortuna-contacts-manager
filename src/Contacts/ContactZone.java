@@ -37,7 +37,8 @@ public class ContactZone {
 
         if (! Files.exists(dataFile)) {
             Files.createFile(dataFile);
-            List<String> contactList = Arrays.asList("Name | Phone Number", "--------------------", "Jack Black | 1231231234", "Jane Doe | 2342342345", "Sam Space | 3453453456");
+            List<String> contactList = Arrays.asList("Name | Phone Number", "--------------------", "Jack Black | " +
+                    "123-123-1234", "Jane Doe | 234-234-2345", "Sam Space | 345-345-3456");
             Path filepath = Paths.get("data", "contacts.txt");
             Files.write(filepath, contactList);
         }
@@ -60,11 +61,40 @@ public class ContactZone {
     }
     //prompts and adds info to array list
     public void addContact(){
+        int index = 0;
+        boolean overwriteConfirm = false;
+        String newNumber = "";
         String firstName = input.getString("What is the contact's first name?");
         String lastName =  input.getString("What is the contact's last name?");
+
+        for (int i = 0; i < contactList.size(); i += 1) {
+            // if there is a match, grab that index
+            if(contactList.get(i).contains(firstName + " " + lastName)) {
+                index = i;
+                System.out.println(firstName + " " + lastName + " already exists in the contact list - do you want to" +
+                        " overwrite?");
+                overwriteConfirm = input.yesNo("");
+
+            }
+        }
+
+        if(!overwriteConfirm){
+            addContact();
+            return;
+        } else if (overwriteConfirm){
+            contactList.remove(index);
+        }
+
         long phoneNumber = input.getNumber("What is the contact's phone number?");
-        Contact contact = new Contact(firstName, lastName, phoneNumber);
-        contactList.add(firstName + " " + lastName + " | " + phoneNumber);
+        String number = Long.toString(phoneNumber);
+        if(number.length() == 7){
+            newNumber = number.substring(0, 3) + "-" + number.substring(3);
+        } else {
+            newNumber = number.substring(0, 3) + "-" + number.substring(3, 6) + "-" + number.substring(6);
+        }
+
+//        Contact contact = new Contact(firstName, lastName, phoneNumber);
+        contactList.add(firstName + " " + lastName + " | " + newNumber);
 
     }
 

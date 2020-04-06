@@ -20,6 +20,7 @@ public class Input {
     //if the user entered "Y", this returns true
     public boolean yesNo(String prompt){
         System.out.println(prompt);
+        System.out.println("Type [Yes] to confirm, any other key to continue.");
         String bool = scanner.nextLine();
         if(bool.equalsIgnoreCase("yes")){
             return true;
