@@ -1,6 +1,3 @@
-Name | Phone Number
---------------------
-Jack Black | 123-123-1234
-Jane Doe | 234-234-2345
-Sam Space | 345-345-3456
-Jeremy T | 210-293-0291
+j h                       | 210-202-0202
+Jeremy T                  | 555-5555  
+James Dongoleigns         | 555-5555  

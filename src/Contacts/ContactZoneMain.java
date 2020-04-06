@@ -37,7 +37,7 @@ public class ContactZoneMain {
         //taking the input and choosing the correct option
         switch(userInput){
             case 1: contacting.getContacts();
-                input.yesNo("\nEnter [C] to continue.");
+                input.yesNo("\n");
                     break;
             case 2:   userContinue = true;
                     while(userContinue) {
