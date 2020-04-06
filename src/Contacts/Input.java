@@ -15,13 +15,13 @@ public class Input {
         System.out.println();
         System.out.println(prompt);
         System.out.println();
-        return scanner.next();
+        return scanner.nextLine();
     }
     //if the user entered "Y", this returns true
     public boolean yesNo(String prompt){
         System.out.println(prompt);
-        String bool = scanner.next();
-        if(bool.toLowerCase().contains("y")) {
+        String bool = scanner.nextLine();
+        if(bool.equalsIgnoreCase("yes")){
             return true;
         }
         return false;

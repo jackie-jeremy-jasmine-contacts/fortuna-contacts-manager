@@ -54,7 +54,7 @@ public class ContactZoneMain {
             case 4: userContinue = true;
                     while(userContinue) {
                         contacting.deleteContact();
-                        userContinue = input.yesNo("\nWould you like to delete another contact?");
+                        userContinue = input.yesNo("\nWould you like to delete another contact? YES/NO");
                 }
                     break;
             case 5: contacting.writeContacts();
