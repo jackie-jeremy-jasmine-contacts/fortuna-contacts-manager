@@ -1,5 +1,7 @@
 package Contacts;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +18,7 @@ public class ContactZone {
 
     Input input = new Input();
     List<String> contactList = new ArrayList<>();
-
+    // creates file if it doesn't exist
     public void createFile() throws IOException {
         String directory = "data";
         String filename = "contacts.txt";
@@ -45,18 +47,18 @@ public class ContactZone {
 
 
     }
-
+    //reads memory to find contacts
     public void readContacts() throws IOException{
         Path contact = Paths.get("data", "contacts.txt");
         contactList = Files.readAllLines(contact);
     }
-
+    //loops through contacts and prints them to the console
     public void getContacts () throws IOException {
         for (int i = 0; i < contactList.size(); i += 1) {
             System.out.println(contactList.get(i));
         }
     }
-
+    //prompts and adds info to array list
     public void addContact(){
         String firstName = input.getString("What is the contact's first name?");
         String lastName =  input.getString("What is the contact's last name?");
@@ -66,19 +68,44 @@ public class ContactZone {
 
     }
 
-    public void searchContact(){
-        String contactName = input.getString("Please enter the name you want to search for: ");
+
+    public int searchContact(){
+        //Gets user's response and stores it as a string
+        String contactName = input.getString("Enter a name: ");
+        //Initially set to name not existing
+        int contactIndex = -1;
+        //loops through contactList
         for (int i = 0; i < contactList.size(); i += 1) {
+            // if there is a match, grab that index
             if(contactList.get(i).contains(contactName)){
-                System.out.println(contactList.get(i));
+                contactIndex = i;
             }
         }
+        //if the name is not a match then print this
+        if(contactIndex == -1){
+            System.out.println("Sorry, that person isn't in the list!");
+        } else {
+            //print out matching contact
+            System.out.println(contactList.get(contactIndex));
+        }
+        return contactIndex;
+
+
     }
 
     public void deleteContact(){
-
+        //finding name of person entered and returning the index
+        int nameToDelete = searchContact();
+        //call yesNo method to make sure user wants to delete person
+        boolean continueToDelete = input.yesNo("Are you sure you want to delete this person? YES/NO");
+        //if the above returns true, delete name from contact list
+            if(continueToDelete) {
+                System.out.printf("%s Deleted\n", contactList.get(nameToDelete));
+            contactList.remove(nameToDelete);
+            }
     }
 
+    //this clears the file and adds and saves to contacts.txt
     public void writeContacts() throws IOException {
         Files.write(
                 Paths.get("data", "contacts.txt"),

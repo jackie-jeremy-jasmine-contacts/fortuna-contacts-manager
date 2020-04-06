@@ -3,28 +3,30 @@ package Contacts;
 import java.util.Scanner;
 
 public class Input {
+    //defining variable scanner
     private Scanner scanner;
 
     public Input(){
+        //created scanner
         scanner = new Scanner(System.in);
     }
-
+    //this returns what the user put in
     public String getString(String prompt){
         System.out.println();
         System.out.println(prompt);
         System.out.println();
-        return scanner.next();
+        return scanner.nextLine();
     }
-
+    //if the user entered "Y", this returns true
     public boolean yesNo(String prompt){
         System.out.println(prompt);
-        String bool = scanner.next();
-        if(bool.toLowerCase().contains("y")) {
+        String bool = scanner.nextLine();
+        if(bool.equalsIgnoreCase("yes")){
             return true;
         }
         return false;
     }
-
+    //this will create the prompt for user to enter a number between 1-5 and check if it is in range
     public int getInt(int min, int max, String prompt){
         int check=0;
         check = getInt(prompt);
@@ -34,7 +36,7 @@ public class Input {
         }
         return check;
     }
-
+    //this will test if the response is able to be made into a number
     public int getInt(String prompt){
         int v = 0;
         boolean validInput = false;
@@ -51,7 +53,7 @@ public class Input {
         System.out.println();
         return v;
     }
-
+    //checking if it is a valid number
     public long getLong(String prompt){
         long v = 0;
         boolean validInput = false;
@@ -68,7 +70,7 @@ public class Input {
         System.out.println();
         return v;
     }
-
+    //checks the length of the number
     public long getNumber(String prompt){
         int length = 1;
         long phoneNumber = 1;
@@ -78,7 +80,7 @@ public class Input {
         }while(length != 7 && length != 10 );
         return phoneNumber;
     }
-
+    //math stuff for big ass number
     public int getRange(long number){
         int length = 1;
         if (number >= 100000000) {

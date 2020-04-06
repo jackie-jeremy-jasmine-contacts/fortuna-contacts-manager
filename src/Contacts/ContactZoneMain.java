@@ -12,8 +12,10 @@ public class ContactZoneMain {
 
 
     public static void main(String[] args) throws IOException {
+        //creates new instance of ContactZone class
         ContactZone contacting = new ContactZone();
         Input input = new Input();
+        //starts everything off at "0"
         int userInput = 0;
         boolean userContinue = true;
         boolean userConfirm = true;
@@ -23,7 +25,7 @@ public class ContactZoneMain {
 
     do {
 
-
+        //menu for the user
         System.out.println("\n1. View contacts.\n" +
                 "2. Add a new contact.\n" +
                 "3. Search a contact by name.\n" +
@@ -32,7 +34,7 @@ public class ContactZoneMain {
 
 
         userInput = input.getInt(1, 5, "Enter an option (1, 2, 3, 4 or 5):\n");
-
+        //taking the input and choosing the correct option
         switch(userInput){
             case 1: contacting.getContacts();
                 input.yesNo("\nEnter [C] to continue.");
@@ -52,7 +54,7 @@ public class ContactZoneMain {
             case 4: userContinue = true;
                     while(userContinue) {
                         contacting.deleteContact();
-                        userContinue = input.yesNo("\nWould you like to delete another contact?");
+                        userContinue = input.yesNo("\nWould you like to delete another contact? YES/NO");
                 }
                     break;
             case 5: contacting.writeContacts();
