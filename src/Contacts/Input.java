@@ -20,7 +20,7 @@ public class Input {
     //if the user entered "Y", this returns true
     public boolean yesNo(String prompt){
         System.out.println(prompt);
-        System.out.println("Type [Yes] to confirm, any other key to continue.");
+        System.out.println("Type [Yes] to confirm, any other key to continue.\n");
         String bool = scanner.nextLine();
         if(bool.equalsIgnoreCase("yes")){
             return true;
@@ -78,6 +78,9 @@ public class Input {
         do {
             phoneNumber = getLong(prompt);
             length = getRange(phoneNumber);
+            if(length != 7 && length != 10){
+                System.out.println("Sorry, the phone number must be either 7 or 10 digits. Please try again.");
+            }
         }while(length != 7 && length != 10 );
         return phoneNumber;
     }

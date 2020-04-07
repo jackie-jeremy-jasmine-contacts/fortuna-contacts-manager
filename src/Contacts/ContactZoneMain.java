@@ -42,7 +42,7 @@ public class ContactZoneMain {
             case 2:   userContinue = true;
                     while(userContinue) {
                         contacting.addContact();
-                        userContinue = input.yesNo("\nWould you like to add someone else?");
+                        userContinue = input.yesNo("\nContact added. Would you like to add someone else?");
                     }
                     break;
             case 3:  userContinue = true;
